@@ -1,116 +1,112 @@
-import { useState } from "react";
+
 import { BoxColumn } from "../box/Box";
 import Title from "../texts/Title";
 import Img from "../Image/Image";
 import SubTitle from "../texts/SubTtitle";
-import Paragraph from "../texts/Paragraph";
 
 export const Card = ({ ...props }) => {
-  const [showText, setShowText] = useState(false);
-
-  const { img, title, subtitle, text } = props;
-
-  const handleMouseEnter = () => {
-    setShowText(true);
-  };
-  const handleMouseLeave = () => {
-    setShowText(false);
-  };
+  const { img, title, subtitle, width, height } = props;
 
   return (
-    <BoxColumn onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter}>
-      {!showText && (
-        <BoxColumn
-          background="#fff"
+    <BoxColumn
+      hover={{
+        scale: "scale(1.2)",
+      }}
+    >
+      <BoxColumn
+        background="transparent"
+        radius="15px"
+        margin="0px 15px"
+        height={height ? height : "300px"}
+        justify={{ content: "flex-start" }}
+        backface="hidden"
+        width={width ? width : "300px"}
+        position="relative"
+        cursor="pointer"
+      >
+        <Img
+          src={img}
+          height="100%"
+          width="100%"
           radius="15px"
-          animation={{
-            duration: "0.4s",
-            final: "0deg",
-            start: "90deg",
-            name: "rotatey",
-            origin: { x: "50%", y: "50%" },
-            recurrence: "1",
-          }}
-          height="300px"
-          justify={{ content: "flex-start" }}
-          backface="hidden"
+          object={{ fit: "cover" }}
+        ></Img>
+        <BoxColumn
+          position="absolute"
+          bottom="0px"
+          left="0px"
+          radius="0px 0px 15px 15px "
+          height="40px"
+          background="#000"
+          opacity="0.7"
+          padding="5px"
         >
-          <Img
-            src={img}
-            height="260px"
-            width="100%"
-            radius="15px 15px 0px 0px"
-            object={{ fit: "cover" }}
-          ></Img>
-          <BoxColumn
-            background="#fff"
-            radius="0px 0px 15px 15px "
-            height="40px"
-          >
-            {title && (
-              <Title color="#000" fontSize="15px">
-                {title}
-              </Title>
-            )}
-            {subtitle && (
-              <SubTitle  style={{ color: "#000" }}>
-                {subtitle}
-              </SubTitle>
-            )}
-          </BoxColumn>
+          {title && (
+            <Title color="#fff" fontSize="15px" shadow="1px 1px 2px black">
+              {title}
+            </Title>
+          )}
+          {subtitle && (
+            <SubTitle style={{ color: "#000" }}>{subtitle}</SubTitle>
+          )}
         </BoxColumn>
-      )}
+      </BoxColumn>
+    </BoxColumn>
+  );
+};
 
-      {showText && (
-        <BoxColumn
-          background="#fff"
+export const CardInfo = ({ ...props }) => {
+  const { img, title, subtitle, width, height } = props;
+
+  return (
+    <BoxColumn
+      hover={{
+        scale: "scale(1.2)",
+      }}
+    >
+      <BoxColumn
+        background="transparent"
+        radius="15px"
+        margin="0px 15px"
+        height={height ? height : "300px"}
+        justify={{ content: "flex-start" }}
+        backface="hidden"
+        width={width ? width : "300px"}
+        position="relative"
+        cursor="pointer"
+      >
+        <Img
+          src={img}
+          height="100%"
+          width="100%"
           radius="15px"
-          animation={{
-            duration: "0.4s",
-            final: "0deg",
-            start: "90deg",
-            name: "rotatey",
-            origin: { x: "50%", y: "50%" },
-            recurrence: "1",
-          }}
-          height="300px"
-          boxSizing="border-box"
-          padding="10px"
-          backface="hidden"
+          object={{ fit: "cover" }}
+        ></Img>
+        <BoxColumn
+          position="absolute"
+          bottom="50%"
+          left="0px"
+          radius="0px 0px 15px 15px "
+          height="40px"
+          padding="5px"
         >
-          <BoxColumn
-            background="#e7d2d2bc"
-            radius="15px "
-            height="100%"
-            width="100%"
-            margin="0px 20px"
-            border="3px double #b994b7"
-            padding="20px"
-            boxSizing="border-box"
-          >
-            {title && (
-              <Title color="#000" fontSize="20px">
-                {title}
-              </Title>
-            )}
-            {subtitle && (
-              <SubTitle  style={{ color: "#000" }}>
-                {subtitle}
-              </SubTitle>
-            )}
-            {text && (
-              <Paragraph
-                color="#000"
-                justify="justificado"
-                fontWeight={700}
-                fontSize="13px"
-              >
-                {text}
-              </Paragraph>
-            )}
-          </BoxColumn>
+          {title && (
+            <Title
+              color="#fff"
+              fontSize="60px"
+              shadow="1px 1px 2px black"
+              align="center"
+            >
+              {title}
+            </Title>
+          )}
+          {subtitle && (
+            <SubTitle style={{ color: "#fff", shadow: "1px 1px 2px black" }}>
+              {subtitle}
+            </SubTitle>
+          )}
         </BoxColumn>
-      )}
+      </BoxColumn>
     </BoxColumn>
   );
 };

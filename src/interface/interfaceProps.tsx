@@ -1,6 +1,7 @@
 export interface InterfaceProps {
     padding?: string;
     background?: string;
+    cursor?: string;
     columns?: number;
     width?: string;
     margin?: string;
@@ -8,6 +9,7 @@ export interface InterfaceProps {
       content?: string;
       text?: string;
     },
+    opacity?: string;
     shadow?: string;
     align?: string;
     height?: string;
@@ -40,5 +42,10 @@ export interface InterfaceProps {
     object?:{
       fit: string,
     };
+    hover?:{
+    
+        scale?: string;
+      
+    }
     image?: string;
   }

@@ -7,9 +7,9 @@ import EnviarEmail from "../Email/EnviarEmail";
 import SubTitle from "../texts/SubTtitle";
 
 function FooterView() {
-  const telefone: string = require("../../assets/image/telefone.svg").default;
+  const footer: string = require("../../assets/image/footer.svg").default;
   return (
-    <Footer image={telefone}>
+    <Footer image={footer}>
       <BoxColumn>
         <Title margin="0px 0px 40px 0px" fontSize="36px">
           Entre em Contato
