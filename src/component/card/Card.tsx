@@ -17,10 +17,10 @@ export const Card = ({ ...props }) => {
         background="transparent"
         radius="15px"
         margin="0px 15px"
-        height={height ? height : "300px"}
+        height={height ? height : "200px"}
         justify={{ content: "flex-start" }}
         backface="hidden"
-        width={width ? width : "300px"}
+        width={width ? width : "200px"}
         position="relative"
         cursor="pointer"
       >
@@ -59,11 +59,7 @@ export const CardInfo = ({ ...props }) => {
   const { img, title, subtitle, width, height } = props;
 
   return (
-    <BoxColumn
-      hover={{
-        scale: "scale(1.2)",
-      }}
-    >
+  
       <BoxColumn
         background="transparent"
         radius="15px"
@@ -82,18 +78,14 @@ export const CardInfo = ({ ...props }) => {
           radius="15px"
           object={{ fit: "cover" }}
         ></Img>
-        <BoxColumn
-          position="absolute"
-          bottom="50%"
-          left="0px"
-          radius="0px 0px 15px 15px "
-          height="40px"
-          padding="5px"
-        >
+       
           {title && (
             <Title
+            position="absolute"
+            top="40%"
+            left="0px"
               color="#fff"
-              fontSize="60px"
+              fontSize="40px"
               shadow="1px 1px 2px black"
               align="center"
             >
@@ -101,12 +93,12 @@ export const CardInfo = ({ ...props }) => {
             </Title>
           )}
           {subtitle && (
-            <SubTitle style={{ color: "#fff", shadow: "1px 1px 2px black" }}>
+            <SubTitle style={{justify:{text:"center"}, color: "#f2e609", shadow: "1px 1px 2px black", width:"100%", fontSize:"20px", position:"absolute", top:"85%", left:"0px"}}>
               {subtitle}
             </SubTitle>
           )}
-        </BoxColumn>
+        
       </BoxColumn>
-    </BoxColumn>
+    
   );
 };

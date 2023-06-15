@@ -11,11 +11,17 @@ interface Props {
 const TextH2 = styled.h2<InterfaceProps>`
   color: ${({color})=>color? color:"#fff"};
   margin: ${({ margin }) => (margin ? margin : "0px")};
+  width: ${({ width }) => (width)};
   font-size: ${({ fontSize }) => (fontSize )};
   font-weight: ${({ fontWeight}) => fontWeight};
   text-align: ${({justify}) => (justify?.text)};
   background:${({background}) => (background)};
   text-shadow: ${({shadow}) => (shadow)};
+  position: ${({position}) => (position)};
+  top: ${({ top }) => top};
+  left: ${({ left }) => left};
+  right: ${({ right }) => right};
+  bottom: ${({ bottom }) => bottom};
   @media (max-width: 768px) {
     display: flex;
     align-items: center;
@@ -26,11 +32,17 @@ const TextH2 = styled.h2<InterfaceProps>`
 const TextH3 = styled.h3<InterfaceProps>`
   color: ${({color})=>color? color:"#fff"};
   margin: ${({ margin }) => (margin ? margin : "0px")};
+  width: ${({ width }) => (width)};
   font-size: ${({ fontSize }) => (fontSize )};
   font-weight: ${({ fontWeight}) => fontWeight};
   text-align: ${({justify}) => (justify?.text)};
   background:${({background}) => (background)};
   text-shadow: ${({shadow}) => (shadow)};
+  position: ${({position}) => (position)};
+  top: ${({ top }) => top};
+  left: ${({ left }) => left};
+  right: ${({ right }) => right};
+  bottom: ${({ bottom }) => bottom};
   @media (max-width: 768px) {
     display: flex;
     align-items: center;
@@ -41,11 +53,17 @@ const TextH3 = styled.h3<InterfaceProps>`
 const TextH4 = styled.h4<InterfaceProps>`
   color: ${({color})=>color? color:"#fff"};
   margin: ${({ margin }) => (margin ? margin : "0px")};
+  width: ${({ width }) => (width)};
   font-size: ${({ fontSize }) => (fontSize)};
   font-weight: ${({ fontWeight}) => fontWeight};
   text-align: ${({justify}) => (justify?.text)};
   background:${({background}) => (background)};
   text-shadow: ${({shadow}) => (shadow)};
+  position: ${({position}) => (position)};
+  top: ${({ top }) => top};
+  left: ${({ left }) => left};
+  right: ${({ right }) => right};
+  bottom: ${({ bottom }) => bottom};
   @media (max-width: 768px) {
     display: flex;
     align-items: center;
@@ -56,11 +74,17 @@ const TextH4 = styled.h4<InterfaceProps>`
 const TextH5 = styled.h5<InterfaceProps>`
   color: ${({color})=>color? color:"#fff"};
   margin: ${({ margin }) => (margin ? margin : "0px")};
+  width: ${({ width }) => (width)};
   font-size: ${({ fontSize }) => (fontSize )};
   font-weight: ${({ fontWeight}) => fontWeight};
   text-align: ${({justify}) => (justify?.text)};
   background:${({background}) => (background)};
   text-shadow: ${({shadow}) => (shadow)};
+  position: ${({position}) => (position)};
+  top: ${({ top }) => top};
+  left: ${({ left }) => left};
+  right: ${({ right }) => right};
+  bottom: ${({ bottom }) => bottom};
   @media (max-width: 768px) {
     display: flex;
     align-items: center;

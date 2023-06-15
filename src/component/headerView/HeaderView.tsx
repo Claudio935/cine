@@ -15,13 +15,13 @@ function HeaderView() {
       paragraphText: "Viva essa alegria!!",
       titleStyle: {
         color: "#fff",
-        fontSize: "98px",
+        fontSize: "88px",
         shadow: "black 0.05em 0.1em 0.3em",
         margin: "0px 0px 30px 0px",
       },
       subTitleStyle: {
         color: "#fff",
-        fontSize: "52px",
+        fontSize: "42px",
         justify: {
           text: "center",
         },
@@ -93,7 +93,7 @@ function HeaderView() {
       paragraphText: "",
       titleStyle: {
         color: "#fff",
-        fontSize: "70px",
+        fontSize: "60px",
         shadow: "black 0.05em 0.1em 0.3em",
         margin: "0px 0px 30px 0px",
         justify: {
@@ -130,7 +130,7 @@ function HeaderView() {
 
   return (
     <Header background="#ffff">
-      <BoxColumn background="#ffff" height="700px">
+      <BoxColumn background="#ffff" height="700px" width="100%">
         <Slider config={sliderObject}></Slider>
       </BoxColumn>
     </Header>

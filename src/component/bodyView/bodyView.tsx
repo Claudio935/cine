@@ -48,7 +48,6 @@ function BodyView() {
     const nextMonthDateString = `${nextMonthYear}-${nextMonth
       .toString()
       .padStart(2, "0")}-01`;
-    console.log(nextMonthDateString);
     fetch(
       `https://api.themoviedb.org/3/discover/movie?api_key=1495c4d87bd2fdd377bfadeb1d866cd8&language=pt-BR&primary_release_date.gte=${nextMonthDateString}`
     )
@@ -87,33 +86,35 @@ function BodyView() {
             })}
           </BoxSlider>
         </BoxColumn>
-        <BoxColumn padding="120px">
+        <BoxColumn padding=" 120px 0px">
           <Title fontSize="110px" margin="80px 0px">
             Dicas
           </Title>
-          <BoxGrid columns={3}>
+          <BoxColumn justify={{content:"center"}}>
+          <BoxGrid columns={3} justify={{content:"center"}}>
             <CardInfo
-              height={"400px"}
-              width={"400px"}
+              height={"350px"}
+              width={"350px"}
               title={"Faça seu evento conosco!! "}
               subtitle={"Clique aqui"}
               img={parabens}
             />
             <CardInfo
-              height={"400px"}
-              width={"400px"}
+              height={"350px"}
+              width={"350px"}
               title={"A procura de uma promoção?"}
               subtitle={"Clique aqui"}
               img={bancos}
             />
             <CardInfo
-              height={"400px"}
-              width={"400px"}
+              height={"350px"}
+              width={"350px"}
               title={"Não sabe o que assitir, veja as notas dos filmes!"}
               subtitle={"Clique aqui"}
               img={nota}
             />
           </BoxGrid>
+          </BoxColumn>
         </BoxColumn>
         <BoxColumn>
           <Title fontSize="110px">Vem ai</Title>
@@ -129,7 +130,7 @@ function BodyView() {
                   ></Card>
                 );
               } else {
-                return <React.Fragment></React.Fragment>;
+                return <React.Fragment key={index}></React.Fragment>;
               }
             })}
           </BoxSlider>

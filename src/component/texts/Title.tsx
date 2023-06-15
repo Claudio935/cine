@@ -8,6 +8,11 @@ const Title  = styled.h1<InterfaceProps>`
   text-align: ${({justify}) => (justify?.text)};
   background:${({background}) => (background)};
   text-shadow: ${({shadow}) => (shadow)};
+  position: ${({position}) => (position)};
+  top: ${({ top }) => top};
+  left: ${({ left }) => left};
+  right: ${({ right }) => right};
+  bottom: ${({ bottom }) => bottom};
   @media (max-width: 768px) {
     display: flex;
     align-items: center;

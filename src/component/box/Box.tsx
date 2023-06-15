@@ -1,9 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { InterfaceProps } from "../../interface/interfaceProps";
-import React, {useState} from "react";
-
- 
+import React, { useState } from "react";
 
 const blink = () => keyframes`
  0% {
@@ -83,9 +81,9 @@ export const BoxColumn = styled.div<InterfaceProps>`
   margin: ${({ margin }) => (margin ? margin : "0px")};
   border-radius: ${({ radius }) => (radius ? radius : "")};
   position: ${({ position }) => position};
-  top: ${({ top }) => top};
   cursor: ${({ cursor }) => cursor};
   opacity: ${({ opacity }) => opacity};
+  top: ${({ top }) => top};
   left: ${({ left }) => left};
   right: ${({ right }) => right};
   bottom: ${({ bottom }) => bottom};
@@ -98,13 +96,12 @@ export const BoxColumn = styled.div<InterfaceProps>`
   box-sizing: ${({ boxSizing }) => `${boxSizing}`};
   border: ${({ border }) => `${border}`};
   backface-visibility: ${({ backface }) => `${backface}`};
-  &:hover{
-    transform: ${( {hover} ) => hover?.scale};
-  };
+  &:hover {
+    transform: ${({ hover }) => hover?.scale};
+  }
   @media (max-width: 768px) {
     display: flex;
     align-items: center;
-    position: initial;
   }
 `;
 
@@ -131,9 +128,9 @@ export const BoxRow = styled.div<InterfaceProps>`
     `${animation?.origin?.x} ${animation?.origin?.y}`};
   box-sizing: ${({ boxSizing }) => `${boxSizing}`};
   border: ${({ border }) => `${border}`};
-  &:hover{
-    transform: ${( {hover} ) => hover?.scale};
-  };
+  &:hover {
+    transform: ${({ hover }) => hover?.scale};
+  }
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
@@ -183,6 +180,7 @@ export const BoxGrid = styled.div<InterfaceProps>`
   width: ${({ width }) => (width ? width : "100%")};
   margin: ${({ margin }) => (margin ? margin : "0px")};
   border-radius: ${({ radius }) => (radius ? radius : "")};
+  place-items: center;
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
@@ -206,7 +204,7 @@ const Button = styled.button<InterfaceProps>`
 `;
 
 export const BoxSlider = ({ ...props }) => {
-  const [showButton, setShowButton] = useState(false)
+  const [showButton, setShowButton] = useState(false);
   let intervalo: NodeJS.Timer;
   const contentElement = document.getElementById(`content${props.id}`);
   const prev = () => {
@@ -237,27 +235,35 @@ export const BoxSlider = ({ ...props }) => {
   };
 
   return (
-   <BoxRow position="relative" onMouseOver={()=> setShowButton(true)} onMouseOut={()=> setShowButton(false)}>
-      {showButton && <Button
-        style={{ top: "45%", left: "0px" }}
-        onMouseOver={prev}
-        onMouseOut={mouseOut}
+    <BoxRow
+      position="relative"
+      onMouseOver={() => setShowButton(true)}
+      onMouseOut={() => setShowButton(false)}
+    >
+      {showButton && (
+        <Button
+          style={{ top: "45%", left: "0px" }}
+          onMouseOver={prev}
+          onMouseOut={mouseOut}
+        >
+          <FaArrowLeft />
+        </Button>
+      )}
+      <BoxBaseSlider
+        id={`content${props.id}`}
+        justify={{ content: "space-between" }}
       >
-        <FaArrowLeft />
-      </Button>}
-       <BoxBaseSlider id={`content${props.id}`} justify={{content:"space-between"}}>
-      
-      {props.children}
-    
+        {props.children}
       </BoxBaseSlider>
-      {showButton && <Button
-        style={{ top: "45%", right: "0px" }}
-        onMouseOver={next}
-        onMouseOut={mouseOut}
-      >
-        <FaArrowRight />
-      </Button>}
-      </BoxRow>
-   
+      {showButton && (
+        <Button
+          style={{ top: "45%", right: "0px" }}
+          onMouseOver={next}
+          onMouseOut={mouseOut}
+        >
+          <FaArrowRight />
+        </Button>
+      )}
+    </BoxRow>
   );
 };
