@@ -17,7 +17,7 @@ export const Card = ({ ...props }) => {
         background="transparent"
         radius="15px"
         margin="0px 15px"
-        height={height ? height : "200px"}
+        height={height ? height : "300px"}
         justify={{ content: "flex-start" }}
         backface="hidden"
         width={width ? width : "200px"}

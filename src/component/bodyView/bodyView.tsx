@@ -70,7 +70,7 @@ function BodyView() {
 
   return (
     <Section>
-      <BoxColumn margin="180px 0px 180px 0px">
+      <BoxColumn margin="180px 0px 0px 0px">
         <BoxColumn>
           <Title fontSize="110px">Em Cartaz</Title>
           <BoxSlider width="100%" justify={{ content: "space-between" }} id={1}>
@@ -86,7 +86,7 @@ function BodyView() {
             })}
           </BoxSlider>
         </BoxColumn>
-        <BoxColumn padding=" 120px 0px">
+        <BoxColumn margin=" 180px 0px">
           <Title fontSize="110px" margin="80px 0px">
             Dicas
           </Title>
@@ -116,7 +116,7 @@ function BodyView() {
           </BoxGrid>
           </BoxColumn>
         </BoxColumn>
-        <BoxColumn>
+        <BoxColumn margin=" 180px 0px">
           <Title fontSize="110px">Vem ai</Title>
           <BoxSlider width="100%" justify={{ content: "space-between" }} id={2}>
             {newMovies?.map((item, index) => {
