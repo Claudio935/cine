@@ -49,9 +49,9 @@ object-fit: fill;
 `;
 
 const EscolherAssento = () => {
-  const {state} = useContext( MovieContext)
-  if(!state?.movieSelect?.title){
-    return(
+  const { state } = useContext(MovieContext)
+  if (!state?.movieSelect?.title) {
+    return (
       <DontMovie />
     )
   }
@@ -59,25 +59,27 @@ const EscolherAssento = () => {
     <Container>
       <SectionIngressos>
         <BoxIngressos >
-       
-        <BoxColumn style={{height:"280px"}}>
-        <ImgMovieSelecionado src={`https://image.tmdb.org/t/p/original${state?.movieSelect?.poster_path}`}></ImgMovieSelecionado>
-          <Title style={{fontSize:"13px"}}>{state.movieSelect.title}</Title>
-        </BoxColumn>
-        <BoxRow>
-        <Paragraph>{`${state.ingresso.horario} - ${state.ingresso.sala}`}</Paragraph>
-       
-        </BoxRow>
-        {state.ingresso.cadeiras?.length > 0 && <SubTitle style={{fontSize:"14px"}}>Cadeira selecionada</SubTitle>}
-        <BoxRow>
-       
-        {state.ingresso.cadeiras.map((item, index)=>{return(
-          <Paragraph key={index} style={{margin:"5px"}}>{`${item}`}</Paragraph>
-        )})}
-        </BoxRow>
-        <Button>Comprar</Button>
+
+          <BoxColumn style={{ height: "280px" }}>
+            <ImgMovieSelecionado src={`https://image.tmdb.org/t/p/original${state?.movieSelect?.poster_path}`}></ImgMovieSelecionado>
+            <Title style={{ fontSize: "13px" }}>{state.movieSelect.title}</Title>
+          </BoxColumn>
+          <BoxRow>
+            <Paragraph>{`${state.ingresso.horario} - ${state.ingresso.sala}`}</Paragraph>
+
+          </BoxRow>
+          {state.ingresso.cadeiras?.length > 0 && <SubTitle style={{ fontSize: "14px" }}>Cadeira selecionada</SubTitle>}
+          <BoxRow>
+
+            {state.ingresso.cadeiras.map((item, index) => {
+              return (
+                <Paragraph key={index} style={{ margin: "15px 5px" }}>{`${item}`}</Paragraph>
+              )
+            })}
+          </BoxRow>
+          <Button>Comprar</Button>
         </BoxIngressos>
-       
+
 
       </SectionIngressos>
       <SectionAssentos >
