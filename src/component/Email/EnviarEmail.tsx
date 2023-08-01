@@ -1,29 +1,22 @@
-import { styled } from "styled-components";
-import emailjs, { EmailJSResponseStatus } from "emailjs-com";
 import { useState } from "react";
 import { BoxColumn } from "../box/Box";
-import SubTitle from "../texts/SubTtitle";
-import Button from "../button/Button";
+import { styled } from "styled-components";
+import {Button} from "../button/Button";
+import Input from "../input/Input";
+import TextArea from "../input/TextArea";
+import { sendEmail } from "../../utils/sendEmail";
 
-const Input = styled.input`
-  width: 100%;
-  border-radius: 15px;
-  border: none;
-  padding: 10px;
-  outline: none !important;
-`;
-const TextArea = styled.textarea`
-  width: 100%;
-  border-radius: 15px;
-  border: none;
-  padding: 10px;
-`;
+
 interface emailProps {
   nome: string;
   assunto: string;
   mensagem: string;
 }
-
+const ContainerInputs = styled(BoxColumn)`
+   height:400px;
+      width:400px;
+      justify-content: space-between;
+`;
 function EnviarEmail() {
   const [dadosEmail, setDadosEmail] = useState<emailProps>({
     nome: "",
@@ -31,68 +24,42 @@ function EnviarEmail() {
     mensagem: "",
   });
 
-  function sendEmail() {
-    const templateParams = {
-      nome: dadosEmail.nome,
-      email: dadosEmail.assunto,
-      mensage: dadosEmail.mensagem,
-    };
-
-    emailjs
-      .send(
-        "service_gzn3as1",
-        "template_23r1aoi",
-        templateParams,
-        "zW5mIBx-HCybOD5nW"
-      )
-      .then(
-        (result: EmailJSResponseStatus) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-  }
+  
 
   return (
-    <BoxColumn
-      height="400px"
-      width="400px"
-      justify={{ content: "space-between" }}
+    <ContainerInputs
     >
-      <SubTitle style={{ fontSize: "15px" }}>Nome</SubTitle>
+     
       <Input
-        onChange={(e) => setDadosEmail({ ...dadosEmail, nome: e.target.value })}
+        onChange={(e:React.ChangeEvent<HTMLInputElement>) => setDadosEmail({ ...dadosEmail, nome: e.target.value })}
         value={dadosEmail.nome}
+        placeholder="Nome"
       />
-      <SubTitle style={{ fontSize: "15px" }}>Email</SubTitle>
+   
       <Input
-        onChange={(e) =>
+        onChange={(e:React.ChangeEvent<HTMLInputElement>) =>
           setDadosEmail({ ...dadosEmail, assunto: e.target.value })
         }
         value={dadosEmail.assunto}
+        placeholder="Email"
       />
-      <SubTitle style={{ fontSize: "15px" }}>Mensagem</SubTitle>
       <TextArea
         rows={10}
-        onChange={(e) =>
+        onChange={(e:React.ChangeEvent<HTMLTextAreaElement>) =>
           setDadosEmail({ ...dadosEmail, mensagem: e.target.value })
         }
         value={dadosEmail.mensagem}
+        placeholder="Mensagem"
       />
       <Button
-        radius="15px"
-        width="100%"
-        background="#6d1238"
-        border="none"
-        color="#fff"
-        height="30px"
-        onClick={sendEmail}
+       
+        onClick={() =>sendEmail( {nome: dadosEmail.nome,
+          email: dadosEmail.assunto,
+          mensagem: dadosEmail.mensagem,})}
       >
         Enviar
       </Button>
-    </BoxColumn>
+    </ContainerInputs>
   );
 }
 export default EnviarEmail;

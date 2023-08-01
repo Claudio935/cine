@@ -1,13 +1,18 @@
 import styled from "styled-components";
-import { InterfaceProps } from "../../interface/interfaceProps";
 
-const Img = styled.img<InterfaceProps>`
-  width: ${({ width }) => width};
-  height: ${({ height }) => height};
-  margin: ${({ margin }) => margin};
-  z-index: ${({ index }) => index};
-  border-radius: ${({ radius }) => radius};
-  object-fit: ${({ object }) => object?.fit};
+
+export const Img = styled.img`
+  width:100%;
+  height: 100%;
+  object-fit: cover;
+  background: linear-gradient( to bottom, rgba(212, 54, 167, 0.1), rgb(115 44 44 / 12%), rgb(255 21 21 / 71%) );
 `;
 
-export default Img;
+
+export const ImageText = styled(Img)`
+background:linear-gradient( to bottom, rgba(212, 54, 167, 0.1), rgb(115 44 44 / 12%), rgb(255 21 21 / 71%) );;
+  width: 400px;
+  height: 400px;
+  
+`;
+

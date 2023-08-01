@@ -1,34 +1,32 @@
 import styled from "styled-components";
-import { IconType } from "react-icons";
+import {  ReactElement } from "react";
 interface Props {
-  height?: string;
-  width?: string;
-  margin?: string;
   href?: string;
-  icon?: IconType;
+  children?: ReactElement;
   color?: string;
 }
 const Anchor = styled.a<Props>`
   display: flex;
-  width: ${({ width }) => (width ? width : "100%")};
-  height: ${({ height }) => (height ? height : "100%")};
-  margin: ${({ margin }) => (margin ? margin : "0px")};
+  width:  100%;
+  height: 100%;
+  margin: 0px;
+  margin: 5px;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Icon: React.FC<Props> = (props) => {
-  const { href, width, height, icon, color } = props;
-  const IconComponent = icon;
+  const { href,  children } = props;
+
   return (
     <Anchor
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      width={width}
-      height={height}
     >
-      {IconComponent && (
-        <IconComponent color={color} style={{ width: width, height: height }} />
-      )}
+     
+      {children}
+      
     </Anchor>
   );
 };

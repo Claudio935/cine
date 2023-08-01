@@ -1,23 +1,19 @@
 import styled from 'styled-components';
-import { InterfaceProps } from '../../interface/interfaceProps';
 
-const Title  = styled.h1<InterfaceProps>`
-  color:${({color})=>color? color:"#fff"};
-  margin: ${({margin}) => (margin ? margin : '0px')};;
-  font-size: ${({fontSize}) => (fontSize ? fontSize : '')};
-  text-align: ${({justify}) => (justify?.text)};
-  background:${({background}) => (background)};
-  text-shadow: ${({shadow}) => (shadow)};
-  position: ${({position}) => (position)};
-  top: ${({ top }) => top};
-  left: ${({ left }) => left};
-  right: ${({ right }) => right};
-  bottom: ${({ bottom }) => bottom};
+
+const Title  = styled.h1`
+  color:#fff;
+  font-size: 48px;
+  text-align: center;
+ 
+  text-shadow: 1px 1px 2px black;
+  
   @media (max-width: 768px) {
     display: flex;
     align-items: center;
    justify-content: center;
    text-align: center;
+  
   }
 `;
 export default Title

@@ -1,191 +1,80 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
+import { useState, useRef } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { InterfaceProps } from "../../interface/interfaceProps";
-import React, { useState } from "react";
 
-const blink = () => keyframes`
- 0% {
-    visibility: hidden;
-  }
-  50% {
-    visibility: hidden;
-  }
-  100% {
-    visibility: visible;
-  }
- `;
-const slide = (startPosition?: string, endPosition?: string) => keyframes`
-  0% {
-    transform: translateX(${startPosition});
-  }
-  
-  100% {
-    transform: translateX(${endPosition});
-  }
- `;
-const animationRotateX = (
-  startPosition?: string,
-  endPosition?: string
-) => keyframes`
-0% {
-  transform: rotate(${startPosition});
-}
-50% {
-  transform: rotate(${endPosition});
-}
-
-100% {
-  transform: rotate(${startPosition});
-}
-`;
-const animationRotateY = (
-  startPosition?: string,
-  endPosition?: string
-) => keyframes`
-0% {
-  transform: rotateY(${startPosition});
-}
-
-
-100% {
-  transform: rotateY(${endPosition});
-}
-`;
-
-const animationType = (
-  type?: string,
-  startPosition?: string,
-  endPosition?: string
-) => {
-  switch (type) {
-    case "blink":
-      return blink();
-    case "slide":
-      return slide(startPosition, endPosition);
-    case "rotatex":
-      return animationRotateX(startPosition, endPosition);
-    case "rotatey":
-      return animationRotateY(startPosition, endPosition);
-  }
-};
-export const BoxColumn = styled.div<InterfaceProps>`
+export const BoxColumn = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: ${({ align }) => (align ? align : "center")};
-  justify-content: ${({ justify }) =>
-    justify?.content ? justify.content : "center"};
-  padding: ${(props) => (props.padding ? props.padding : "0px")};
-  background: ${({ background }) => background};
-  width: ${({ width }) => (width ? width : "100%")};
-  height: ${({ height }) => (height ? height : "100%")};
-  margin: ${({ margin }) => (margin ? margin : "0px")};
-  border-radius: ${({ radius }) => (radius ? radius : "")};
-  position: ${({ position }) => position};
-  cursor: ${({ cursor }) => cursor};
-  opacity: ${({ opacity }) => opacity};
-  top: ${({ top }) => top};
-  left: ${({ left }) => left};
-  right: ${({ right }) => right};
-  bottom: ${({ bottom }) => bottom};
-  animation: ${({ animation }) =>
-    animationType(animation?.name, animation?.start, animation?.final)};
-  animation-duration: ${({ animation }) => `${animation?.duration}`};
-  animation-iteration-count: ${({ animation }) => `${animation?.recurrence}`};
-  transform-origin: ${({ animation }) =>
-    `${animation?.origin?.x} ${animation?.origin?.y}`};
-  box-sizing: ${({ boxSizing }) => `${boxSizing}`};
-  border: ${({ border }) => `${border}`};
-  backface-visibility: ${({ backface }) => `${backface}`};
-  &:hover {
-    transform: ${({ hover }) => hover?.scale};
-  }
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+
   @media (max-width: 768px) {
     display: flex;
     align-items: center;
   }
 `;
 
-export const BoxRow = styled.div<InterfaceProps>`
+export const BoxRow = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: ${({ align }) => (align ? align : "center")};
-  justify-content: ${({ justify }) =>
-    justify?.content ? justify.content : "center"};
-  padding: ${(props) => (props.padding ? props.padding : "0px")};
-  background: ${({ background }) => (background ? background : "")};
-  width: ${({ width }) => (width ? width : "100%")};
-  border-radius: ${({ radius }) => (radius ? radius : "")};
-  position: ${({ position }) => position};
-  top: ${({ top }) => top};
-  left: ${({ left }) => left};
-  right: ${({ right }) => right};
-  bottom: ${({ bottom }) => bottom};
-  animation: ${({ animation }) =>
-    animationType(animation?.name, animation?.start, animation?.final)};
-  animation-duration: ${({ animation }) => `${animation?.duration}`};
-  animation-iteration-count: ${({ animation }) => `${animation?.recurrence}`};
-  transform-origin: ${({ animation }) =>
-    `${animation?.origin?.x} ${animation?.origin?.y}`};
-  box-sizing: ${({ boxSizing }) => `${boxSizing}`};
-  border: ${({ border }) => `${border}`};
-  &:hover {
-    transform: ${({ hover }) => hover?.scale};
-  }
-  @media (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: intital;
-  }
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+
+  width: 100%;
 `;
-export const BoxBaseSlider = styled.div<InterfaceProps>`
+
+export const BoxBaseSlider = styled.div`
   display: flex;
   flex-direction: row;
-  height: 500px;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
   scroll-behavior: smooth;
-  padding: 20px;
-  align-items: ${({ align }) => (align ? align : "center")};
-  justify-content: ${({ justify }) =>
-    justify?.content ? justify.content : "center"};
-  padding: ${(props) => (props.padding ? props.padding : "0px")};
-  background: ${({ background }) => (background ? background : "")};
-  width: ${({ width }) => (width ? width : "100%")};
-  border-radius: ${({ radius }) => (radius ? radius : "")};
-  position: ${({ position }) => position};
-  top: ${({ top }) => top};
-  left: ${({ left }) => left};
-  right: ${({ right }) => right};
-  bottom: ${({ bottom }) => bottom};
-  animation: ${({ animation }) =>
-    animationType(animation?.name, animation?.start, animation?.final)};
-  animation-duration: ${({ animation }) => `${animation?.duration}`};
-  animation-iteration-count: ${({ animation }) => `${animation?.recurrence}`};
-  transform-origin: ${({ animation }) =>
-    `${animation?.origin?.x} ${animation?.origin?.y}`};
-  box-sizing: ${({ boxSizing }) => `${boxSizing}`};
-  border: ${({ border }) => `${border}`};
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px;
+
+  width: 2500px;
+
   @media (max-width: 768px) {
     display: flex;
-    flex-direction: column;
+
+    align-items: center;
+    position: intital;
+
+    direction: row;
+    width: 2500px;
+    margin: 80px 0px 0px 0px2500px;
+  }
+`;
+export const ContainerBoxSlider = styled(BoxRow)`
+  position: relative;
+  height: 350px;
+  @media (max-width: 768px) {
+    display: flex;
+
     align-items: center;
     position: intital;
   }
 `;
-export const BoxGrid = styled.div<InterfaceProps>`
+export const BoxGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(${({ columns }) => columns}, 1fr);
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 10px;
-  width: ${({ width }) => (width ? width : "100%")};
-  margin: ${({ margin }) => (margin ? margin : "0px")};
-  border-radius: ${({ radius }) => (radius ? radius : "")};
+  width: 100%;
+  margin: 0px;
   place-items: center;
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
 `;
-const Button = styled.button<InterfaceProps>`
+const ButtonLeft = styled.button`
   border-radius: 50%;
   height: 50px;
   width: 50px;
@@ -196,22 +85,36 @@ const Button = styled.button<InterfaceProps>`
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 50%;
-  left: ${({ left }) => (left ? left : "")};
-  right: ${({ right }) => (right ? right : "")};
+  top: 45%;
+  left: 0px;
   z-index: 3;
   cursor: pointer;
+`;
+const ButtonRight = styled.button`
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  opacity: 0.4;
+  background: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 45%;
+  right: 0px;
 `;
 
 export const BoxSlider = ({ ...props }) => {
   const [showButton, setShowButton] = useState(false);
   let intervalo: NodeJS.Timer;
-  const contentElement = document.getElementById(`content${props.id}`);
+
+  const containerRef = useRef<HTMLDivElement>(null);
   const prev = () => {
     intervalo = setInterval(
       () => {
-        if (!!contentElement) {
-          contentElement.scrollLeft -= 100;
+        if (containerRef.current) {
+          containerRef.current.scrollLeft -= 100;
         }
       },
 
@@ -222,8 +125,8 @@ export const BoxSlider = ({ ...props }) => {
   const next = () => {
     intervalo = setInterval(
       () => {
-        if (!!contentElement) {
-          contentElement.scrollLeft += 100; // Valor do deslocamento em pixels
+        if (containerRef.current) {
+          containerRef.current.scrollLeft += 100;
         }
       },
 
@@ -235,35 +138,43 @@ export const BoxSlider = ({ ...props }) => {
   };
 
   return (
-    <BoxRow
-      position="relative"
+    <ContainerBoxSlider
       onMouseOver={() => setShowButton(true)}
       onMouseOut={() => setShowButton(false)}
     >
       {showButton && (
-        <Button
-          style={{ top: "45%", left: "0px" }}
+        <ButtonLeft
           onMouseOver={prev}
           onMouseOut={mouseOut}
+          data-testid="prev-button"
         >
           <FaArrowLeft />
-        </Button>
+        </ButtonLeft>
       )}
-      <BoxBaseSlider
-        id={`content${props.id}`}
-        justify={{ content: "space-between" }}
-      >
+      <BoxBaseSlider ref={containerRef} data-testid="container-slider">
         {props.children}
       </BoxBaseSlider>
       {showButton && (
-        <Button
-          style={{ top: "45%", right: "0px" }}
+        <ButtonRight
           onMouseOver={next}
           onMouseOut={mouseOut}
+          data-testid="next-button"
         >
           <FaArrowRight />
-        </Button>
+        </ButtonRight>
       )}
-    </BoxRow>
+    </ContainerBoxSlider>
   );
 };
+
+
+export const BoxImageText = styled(BoxRow)`
+  width: 100%;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+export const BoxText = styled(BoxColumn)`
+  width: 50%;
+  padding: 0px 80px;
+`;

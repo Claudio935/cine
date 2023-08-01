@@ -4,56 +4,13 @@ import { styled } from "styled-components";
 import Title from "../texts/Title";
 import { BoxColumn } from "../box/Box";
 import SubTitle from "../texts/SubTtitle";
-import Paragraph from "../texts/Paragraph";
 
-interface TextBoxProps {
-  align?: string;
-  justifycontent?: string;
-  maginText?: string;
-  width?: string;
-  margin?: string;
-  background?: string;
-}
-interface TitleProps {
-  fontSize?: string;
-  color?: string;
-  margin?: string;
-  background?: string;
-  justify?: {
-    text?: string;
-  };
-  shadow?: string;
-}
-interface SubtitleProps {
-  fontSize?: string;
-  color?: string;
-  margin?: string;
-  fontWeight?: number;
-  background?: string;
-  justify?: {
-    text?: string;
-  };
-  shadow?: string;
-}
-interface ParagraphProps {
-  fontSize?: string;
-  color?: string;
-  margin?: string;
-  fontWeight?: number;
-  justify?: string;
-  background?: string;
-  shadow?:string;
-}
 interface imageObject {
   image?: string;
   titleText?: string;
   subtitletext?: string;
   paragraphText?: string;
-  titleStyle?: TitleProps;
-  subTitleStyle?: SubtitleProps;
-  paragraphStyle?: ParagraphProps;
-  boxText?: TextBoxProps;
-  boxTextContainer?: TextBoxProps;
+  align?: string;
 }
 interface Props {
   config: imageObject[];
@@ -63,20 +20,41 @@ interface Props {
   paragraphText?: string;
 }
 
-const BoxSlideText = styled.div<TextBoxProps>`
+const BoxSlideTextRight = styled(BoxColumn)`
   position: absolute;
   top: 0px;
-  display: flex;
-  flex-direction: column;
-  align-items: ${({ align }) => (align ? align : "center")};
-  justify-content: ${({ justifycontent }) =>
-    justifycontent ? justifycontent : "center"};
-  margin: ${({ maginText }) => (maginText ? maginText : "0px")};
+  align-items: flex-end;
+  justify-content: center;
+  margin: 0px;
   width: 100%;
   height: 100%;
   z-index: 2;
+  background: linear-gradient( to right bottom, rgb(207 18 133), rgb(208 6 145 / 7%),rgb(208 6 145 / 84%), rgb(198 5 209) );
 `;
+const BoxSlideTextLeft = styled(BoxSlideTextRight)`
+  align-items: flex-start;
+  background:linear-gradient( to left bottom, rgb(207 18 133), rgb(208 6 145 / 7%),rgb(208 6 145 / 84%), rgb(198 5 209) );
 
+`;
+const TitleSlide = styled(Title)`
+  font-size: 78px;
+  font-weight: 800;
+  margin: 0px;
+  text-align: left;
+  color: rgb(255 249 0);
+  @media (max-width: 768px) {
+    font-size: 68px;
+  }
+`;
+const SubTitleSlide = styled(SubTitle)`
+  font-size: 46px;
+  font-weight: 800;
+  text-align: left;
+  color: #ff6000;
+  @media (max-width: 768px) {
+    font-size: 38px;
+  }
+`;
 const Button = styled.button`
   border-radius: 50%;
   height: 50px;
@@ -91,11 +69,17 @@ const Button = styled.button`
   z-index: 3;
   cursor: pointer;
 `;
+const BoxText = styled(BoxColumn)`
+  width: 40%;
+  height: 40%;
+  margin-left: 60px;
+  align-items: flex-start;
+`;
+
 const ImgContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  
 `;
 const Img = styled.img`
   height: 100%;
@@ -103,7 +87,6 @@ const Img = styled.img`
   position: absolute;
   top: 0px;
   object-fit: cover;
-  
 `;
 interface State {
   currentIndex: number;
@@ -149,35 +132,37 @@ class Slider extends Component<Props, State> {
     const { config } = this.props;
 
     const objectImage = config[this.state.currentIndex];
-    const {
-      image,
-      titleText,
-      subtitletext,
-      paragraphText,
-      titleStyle,
-      subTitleStyle,
-      paragraphStyle,
-      boxText,
-      boxTextContainer,
-    } = objectImage;
+    const { image, titleText, subtitletext } = objectImage;
     return (
       <ImgContainer>
-        <Button style={{ top: "50%", left: "0px" }} onClick={this.prevSlide}>
+        <Button
+          style={{ top: "50%", left: "0px" }}
+          onClick={this.prevSlide}
+          data-testid="prev-button"
+        >
           <FaArrowLeft />
         </Button>
         <Img src={image} alt="Slider" />
-        <BoxSlideText {...boxTextContainer}>
-          <BoxColumn {...boxText}>
-            {titleText && <Title {...titleStyle}>{titleText}</Title>}
-            {subtitletext && (
-              <SubTitle style={{ ...subTitleStyle }}>{subtitletext}</SubTitle>
-            )}
-            {paragraphText && (
-              <Paragraph {...paragraphStyle}>{paragraphText}</Paragraph>
-            )}
-          </BoxColumn>
-        </BoxSlideText>
-        <Button style={{ top: "50%", right: "0px" }} onClick={this.nextSlide}>
+        {objectImage.align === "right" ? (
+          <BoxSlideTextRight>
+            <BoxText>
+              {titleText && <TitleSlide>{titleText}</TitleSlide>}
+              {subtitletext && <SubTitleSlide>{subtitletext}</SubTitleSlide>}
+            </BoxText>
+          </BoxSlideTextRight>
+        ) : (
+          <BoxSlideTextLeft>
+            <BoxText>
+              {titleText && <TitleSlide>{titleText}</TitleSlide>}
+              {subtitletext && <SubTitleSlide>{subtitletext}</SubTitleSlide>}
+            </BoxText>
+          </BoxSlideTextLeft>
+        )}
+        <Button
+          style={{ top: "50%", right: "0px" }}
+          onClick={this.nextSlide}
+          data-testid="next-button"
+        >
           <FaArrowRight />
         </Button>
       </ImgContainer>

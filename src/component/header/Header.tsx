@@ -2,7 +2,6 @@ import styled from "styled-components";
 interface Props {
   padding?: string;
   background?: string;
-  columns?: number;
   width?: string;
   margin?: string;
   image?: string;
