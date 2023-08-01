@@ -2,7 +2,7 @@ import { FaWhatsapp, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { styled } from "styled-components";
 import Title from "../../../component/texts/Title";
 import { BoxColumn, BoxGrid } from "../../../component/box/Box";
-import Footer from "../../../component/Footer/Footer";
+import Footer from "../../../component/footer/Footer";
 import Icon from "../../../component/Icon/Icon";
 import EnviarEmail from "../../../component/Email/EnviarEmail";
 
